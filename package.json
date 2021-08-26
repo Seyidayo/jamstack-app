@@ -1,0 +1,28 @@
+{
+  "name": "more-sleep-web-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "more-sleep-web-app",
+  "author": "seyidayo",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.13.2",
+    "gatsby": "^3.11.1",
+    "gatsby-plugin-gatsby-cloud": "^3.0.0",
+    "gatsby-plugin-react-helmet": "^4.12.0",
+    "gatsby-plugin-styled-components": "^4.12.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.3.1"
+  }
+}
