@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import qs from "query-string";
 import Layout from "../components/templates/Layout";
+import { TokenContext } from "../context/tokenContext";
 
-const LoginPage = ({ location }) => {
+const LoginPage = ({ location }: any) => {
   const query = qs.parse(location?.search);
+  // const { token, setToken } = useContext(TokenContext)
+  // const { access_token } = JSON.parse(query.token)
+
+
 
   useEffect(() => {
-    // if (typeof window !== `undefined`) {
-    //   window.localStorage.setItem(`google:tokens`, JSON.stringify(query.token));
-    // }
-
-    // setTimeout(() => {
-    //   window.location.assign("/app/");
-    // }, 1000);
+    setToken(access_token)
+    setTimeout(() => {
+      window.location.assign("/book/");
+    }, 1000);
   });
 
   return (
@@ -22,7 +24,7 @@ const LoginPage = ({ location }) => {
         <title>Authenticating...</title>
       </Helmet>
 
-      <div className="container mx-auto">
+      <div className="max-w-5xl mx-auto">
         <header className="pt-24">
           <h2 className="text-4xl font-bold text-center text-blue-400">Authenticating your account...</h2>
         </header>

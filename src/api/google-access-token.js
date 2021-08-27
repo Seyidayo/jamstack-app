@@ -16,9 +16,8 @@ google.options({ auth: oauth2Client });
 const googleAccessTokenHandler = async (req, res) => {
   const code = req.query.code;
   const token = await oauth2Client.getToken(code);
-  return res.redirect(
-    `${appRedirectUrl}?token=${JSON.stringify(token?.tokens)}`
-  );
+  const tokens = JSON.stringify(token.tokens);
+  return res.redirect(`${appRedirectUrl}?token=${tokens}`);
 };
 
 export default googleAccessTokenHandler;

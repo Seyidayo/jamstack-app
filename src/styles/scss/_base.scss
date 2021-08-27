@@ -55,7 +55,8 @@ button,
   font-family: "PT Sans";
   font-size: 1rem;
   font-weight: bold;
-  inline-size: 125px;
+  min-inline-size: 125px;
+  padding: 0.25em 1.25em;
   block-size: 50px;
   display: flex;
   align-items: center;

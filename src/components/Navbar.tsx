@@ -4,7 +4,7 @@ import { Link, navigate } from "gatsby";
 const Navbar = () => {
   const [token, setToken] = useState("");
 
-  const handleLogout = async (event) => {
+  const handleSignOut = async (event: any) => {
     event.preventDefault();
     try {
       await fetch(
@@ -32,15 +32,19 @@ const Navbar = () => {
 
   return (
     <nav className="w-100 position-fixed py-5">
-      <div className="container mx-auto">
+      <div className="max-w-5xl mx-auto">
         <ul className="grid grid-cols-3 gap-4">
           <li className="col-start-2 self-center text-center">
             <Link to="/" className="font-bold uppercase">More sleep</Link>
           </li>
           <li>
             {!!token && (
-              <button type="button" onClick={handleLogout}>
-                Logout
+              <button
+                className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold ml-auto"
+                type="button"
+                onClick={handleSignOut}
+              >
+                Log out
               </button>
             )}
           </li>
