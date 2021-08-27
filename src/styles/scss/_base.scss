@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primary: #aba1ac;
+  --secondary: #d8cec6;
+  --neutral: #040302;
+
+  --mint: #50b881;
+  --purple: #6561f6;
+  --yellow: #e9a939;
+
+  --mint-accent: #c0e8d4;
+  --red-accent: #fad1ce;
+  --purple-accent: #d5d4fc;
+  --yellow-accent: #fde9c4;
+
+  --bg-color: #fff;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "PT Sans", sans-serif;
+  color: var(--neutral);
+  background-color: var(--bg-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+p {
+  line-height: 1.75em;
+  font-size: 1.25rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button,
+.button {
+  font-family: "PT Sans";
+  font-size: 1rem;
+  font-weight: bold;
+  inline-size: 125px;
+  block-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0px;
+  font-weight: 500;
+  cursor: pointer;
+}
