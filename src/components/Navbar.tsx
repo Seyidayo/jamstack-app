@@ -23,12 +23,6 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    if (window.localStorage['google:tokens']) {
-      const token = JSON.parse(window.localStorage["google:tokens"]);
-      setToken(token);
-    }
-  }, []);
 
   return (
     <nav className="w-100 position-fixed py-5">

@@ -1,28 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../components/templates/Layout";
-import { TokenContext } from "../context/tokenContext";
 
-import BgImage from '../assets/images/person-sleeping.jpg'
+import BgImage from "../assets/images/person-sleeping.jpg";
 
 const IndexPage = () => {
   const [loading, setLoading] = useState(false);
-  // const { } = useContext(TokenContext)
 
-  const handleSignIn = (event: any): void => {
+  const handleSignIn = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setLoading(true);
     try {
-      setLoading(true);
       window.location.assign("/api/login");
-    } finally {
+    } catch (error) {
       setLoading(false);
     }
   };
 
   return (
     <Layout>
-      <main className="max-w-5xl mx-auto">
-        {/* {token} */}
-        <div className="grid grid-cols-2 py-24 items-center">
+      <main className="max-w-5xl container mx-auto">
+        <div className="block tablet:grid tablet:grid-cols-2 py-24 items-center">
           <header>
             <h1 className="text-6xl font-extrabold leading-tight text-gray-900">
               Keep up with <br />
@@ -30,13 +27,11 @@ const IndexPage = () => {
                 &#8212; <em>sleep</em> easy.
               </span>
             </h1>
-
             <article className="col-start-3 w-96">
               <p className="my-8">
-                You want more sleep, we know how to get it
-                Book <strong className="text-blue-400">
-                  24 hours
-                </strong> of sleep and have a cozy place
+                You want more sleep, we know how to get it Book{" "}
+                <strong className="text-blue-400">24 hours</strong> of sleep and
+                have a cozy place
                 <strong>&#8212; prepared for you</strong> easy, anytime.
               </p>
               <div className="flex gap-4 items-center">
@@ -50,7 +45,15 @@ const IndexPage = () => {
               </div>
             </article>
           </header>
-          <picture> <img src={BgImage} width="100%" alt="" /> </picture>
+          <picture>
+            {" "}
+            <img
+              className="mt-4 tablet:mt-0"
+              src={BgImage}
+              width="100%"
+              alt=""
+            />{" "}
+          </picture>
         </div>
       </main>
     </Layout>

@@ -1,20 +1,19 @@
 import React, { useContext, useEffect } from "react";
+import { navigate } from "gatsby";
 import { Helmet } from "react-helmet";
 import qs from "query-string";
+
+import { UserContext } from "../context/UserContext";
 import Layout from "../components/templates/Layout";
-import { TokenContext } from "../context/tokenContext";
 
 const LoginPage = ({ location }: any) => {
-  const query = qs.parse(location?.search);
-  // const { token, setToken } = useContext(TokenContext)
-  // const { access_token } = JSON.parse(query.token)
-
-
+  const { token } = qs.parse(location?.search);
+  const { setUser } = useContext(UserContext)
 
   useEffect(() => {
-    setToken(access_token)
+    setUser(token)
     setTimeout(() => {
-      window.location.assign("/book/");
+      navigate("/book/");
     }, 1000);
   });
 

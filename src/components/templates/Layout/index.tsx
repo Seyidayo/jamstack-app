@@ -2,9 +2,14 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Navbar";
 import Footer from "../../Footer";
+import UserProvider from "../../../context/UserContext";
 
-const Layout = ({ children }) => (
-  <div>
+interface LayoutInterface {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutInterface) => (
+  <UserProvider>
     <Helmet>
       <meta charSet="utf-8" />
       <title>More sleep</title>
@@ -12,7 +17,7 @@ const Layout = ({ children }) => (
     <Navbar />
     {children}
     <Footer />
-  </div>
+  </UserProvider>
 );
 
 export default Layout;
