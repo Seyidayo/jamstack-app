@@ -2,25 +2,47 @@ import React, { ReactPropTypes } from "react";
 import { graphql } from "gatsby";
 import { get } from "lodash";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { PaystackConsumer } from "react-paystack";
 
 import Layout from "../../components/templates/Layout";
 import StarRating from "../../components/StarRating";
 
 import * as styles from "./_slug.module.css";
 
+const payStackConfig = {
+  reference: new Date().getTime().toString(),
+  email: process.env.PAYSTACK_TEST_EMAIL,
+  publicKey: process.env.PAYSTACK_PUBLIC_KEY,
+};
+
 const ProductPage = (props: ReactPropTypes) => {
   const product = get(props, `data.contentfulProduct`);
+
+  const handleSuccess = (reference: string) => {
+    console.log({ reference });
+  };
+
+  const handleClose = () => {};
+
+  const componentProps = {
+    ...payStackConfig,
+    amount: product.price * 500 * 100,
+    text: "Book Sleep Appointment",
+    onSuccess: (reference: string) => handleSuccess(reference),
+    onClose: handleClose,
+  };
+
   const isUserFavorite = product.reviews > 20000 && product.starrating >= 4;
   return (
     <Layout>
       <div className="container max-w-5xl bg-blue:400 mx-auto ">
         <div className="grid grid-cols-1 gap-12 tablet:grid-cols-2 ">
           <section className="pr-4">
-            <header className="mb-6">
+            <header className="mb-6 tablet:mt-2">
               <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl mb-2">
                 {product.name}{" "}
                 {isUserFavorite && (
-                  <span className="inline-block mt-4 bg-blue-200 text-sm px-2 py-1 rounded-md">
+                  <span className="inline-block font-light mt-4 bg-blue-200 text-sm px-2 py-1 rounded-md">
                     Customer Favorite
                   </span>
                 )}
@@ -50,12 +72,19 @@ const ProductPage = (props: ReactPropTypes) => {
                 {renderRichText(product.description)}
               </div>
 
-              <button
-                type="button"
-                className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
-              >
-                Book
-              </button>
+              <PaystackConsumer {...componentProps}>
+                {({ initializePayment }) => (
+                  <button
+                    type="button"
+                    className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
+                    onClick={() =>
+                      initializePayment(handleSuccess, handleClose)
+                    }
+                  >
+                    Book
+                  </button>
+                )}
+              </PaystackConsumer>
               <span className="block mt-4 text-center text-sm text-gray-500">
                 in stock and ready for booking
               </span>

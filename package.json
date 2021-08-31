@@ -32,6 +32,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-paystack": "^3.0.4",
     "sass": "^1.32.13",
     "tailwindcss": "^2.2.7"
   }
