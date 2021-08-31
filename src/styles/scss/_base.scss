@@ -19,6 +19,9 @@
   --yellow-accent: #fde9c4;
 
   --bg-color: #fff;
+
+  --font-family-body: "Inter", "PT Sans", sans-serif;
+  --font-family-heading: "Inter Bold", "PT Sans", sans-serif;
 }
 
 html {
@@ -26,9 +29,16 @@ html {
 }
 
 body {
-  font-family: "PT Sans", sans-serif;
+  font-family: var(--font-family-body);
   color: var(--neutral);
   background-color: var(--bg-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-heading);
 }
 
 a {
@@ -52,7 +62,7 @@ ul {
 
 button,
 .button {
-  font-family: "PT Sans";
+  font-family: var(--font-family-body);
   font-size: 1rem;
   font-weight: bold;
   min-inline-size: 125px;
@@ -64,4 +74,27 @@ button,
   border: 0px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.description__wrapper {
+  p {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    &:not(:first-of-type) {
+      margin-block-start: 1.5em;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-inline-start: 1rem;
+  }
+
+  button {
+    inline-size: 100%;
+  }
 }

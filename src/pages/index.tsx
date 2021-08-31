@@ -19,7 +19,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <main className="max-w-5xl container mx-auto">
-        <div className="block tablet:grid tablet:grid-cols-2 py-24 items-center">
+        <div className="block tablet:grid tablet:grid-cols-2  items-center">
           <header>
             <h1 className="text-6xl font-extrabold leading-tight text-gray-900">
               Keep up with <br />
