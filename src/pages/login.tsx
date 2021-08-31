@@ -8,10 +8,10 @@ import Layout from "../components/templates/Layout";
 
 const LoginPage = ({ location }: any) => {
   const { token } = qs.parse(location?.search);
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    setUser(token)
+    setUser(token);
     setTimeout(() => {
       navigate("/book/");
     }, 1000);
@@ -23,9 +23,11 @@ const LoginPage = ({ location }: any) => {
         <title>Authenticating...</title>
       </Helmet>
 
-      <div className="max-w-5xl mx-auto">
-        <header className="pt-24">
-          <h2 className="text-4xl font-bold text-center text-blue-400">Authenticating your account...</h2>
+      <div className="container max-w-5xl mx-auto">
+        <header>
+          <h2 className="text-4xl font-bold text-center text-blue-400">
+            Authenticating your account...
+          </h2>
         </header>
       </div>
     </Layout>

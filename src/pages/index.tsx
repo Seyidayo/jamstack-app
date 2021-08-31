@@ -30,8 +30,8 @@ const IndexPage = () => {
             <article className="col-start-3 w-96">
               <p className="my-8">
                 You want more sleep, we know how to get it Book{" "}
-                <strong className="text-blue-400">24 hours</strong> of sleep and
-                have a cozy place
+                <strong className="text-blue-400">up to 12 hours</strong> of
+                sleep and have a cozy place
                 <strong>&#8212; prepared for you</strong> easy, anytime.
               </p>
               <div className="flex gap-4 items-center">
@@ -39,6 +39,7 @@ const IndexPage = () => {
                   className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
                   type="button"
                   onClick={handleSignIn}
+                  disabled={loading}
                 >
                   {loading ? `Loading` : `Book a space`}
                 </button>

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link, navigate } from "gatsby";
 
-const Navbar = () => {
+type NavbarProps = {
+  showBackButton?: boolean;
+};
+
+const Navbar = ({ showBackButton }: NavbarProps) => {
   const [token] = useState("");
 
   const handleSignOut = async (event: any) => {
@@ -18,22 +22,17 @@ const Navbar = () => {
     }
   };
 
-  const showBackButton = (): boolean => {
-    const url = typeof window !== "undefined" ? window.location.pathname : "";
-    return url.split("/").length > 2;
-  };
-
   return (
     <nav className="w-100 position-fixed py-5 mb-8 tablet:mb-16 laptop:mb-24">
       <div className="container max-w-5xl mx-auto">
         <ul className="grid grid-cols-3 gap-4">
-          {showBackButton() && (
+          {showBackButton && (
             <li className="col-start-1 text-blue-400 hover:text-blue-300 font-bold">
               <Link to="/book">&#8249; Back</Link>
             </li>
           )}
           <li className="col-start-2 self-center text-center">
-            <Link to="/" className="font-bold uppercase">
+            <Link to="/" className="font-extrabold text-sm uppercase">
               More sleep
             </Link>
           </li>

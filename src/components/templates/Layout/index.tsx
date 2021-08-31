@@ -6,15 +6,17 @@ import UserProvider from "../../../context/UserContext";
 
 interface LayoutInterface {
   children: React.ReactNode;
+  // TODO: Use context approach
+  showBackButton?: boolean;
 }
 
-const Layout = ({ children }: LayoutInterface) => (
+const Layout = ({ children, showBackButton }: LayoutInterface) => (
   <UserProvider>
     <Helmet>
       <meta charSet="utf-8" />
       <title>More sleep</title>
     </Helmet>
-    <Navbar />
+    <Navbar showBackButton={showBackButton} />
     {children}
     <Footer />
   </UserProvider>

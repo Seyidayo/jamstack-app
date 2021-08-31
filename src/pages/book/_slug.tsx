@@ -1,5 +1,5 @@
 import React, { ReactPropTypes } from "react";
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 import { get } from "lodash";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { PaystackConsumer } from "react-paystack";
@@ -11,15 +11,16 @@ import * as styles from "./_slug.module.css";
 
 const payStackConfig = {
   reference: new Date().getTime().toString(),
-  email: process.env.PAYSTACK_TEST_EMAIL,
-  publicKey: process.env.PAYSTACK_PUBLIC_KEY,
+  email: process.env.PAYSTACK_TEST_EMAIL || "",
+  publicKey: process.env.PAYSTACK_PUBLIC_KEY || "",
 };
 
 const ProductPage = (props: ReactPropTypes) => {
   const product = get(props, `data.contentfulProduct`);
 
-  const handleSuccess = (reference: string) => {
-    console.log({ reference });
+  const handleSuccess = (_reference: string) => {
+    // TODO: send reference
+    navigate("/book/appointment");
   };
 
   const handleClose = () => {};
@@ -34,8 +35,8 @@ const ProductPage = (props: ReactPropTypes) => {
 
   const isUserFavorite = product.reviews > 20000 && product.starrating >= 4;
   return (
-    <Layout>
-      <div className="container max-w-5xl bg-blue:400 mx-auto ">
+    <Layout showBackButton={true}>
+      <div className="container max-w-5xl bg-blue:400 mx-auto">
         <div className="grid grid-cols-1 gap-12 tablet:grid-cols-2 ">
           <section className="pr-4">
             <header className="mb-6 tablet:mt-2">
@@ -70,10 +71,21 @@ const ProductPage = (props: ReactPropTypes) => {
             <div className="description__wrapper">
               <div className="mb-6 leading-loose">
                 {renderRichText(product.description)}
+
+                <p className="mt-6">
+                  Like this product and{" "}
+                  <a
+                    href={product.link}
+                    target="_blank"
+                    className="text-blue-400"
+                  >
+                    want to buy
+                  </a>
+                </p>
               </div>
 
               <PaystackConsumer {...componentProps}>
-                {({ initializePayment }) => (
+                {({ initializePayment }: any) => (
                   <button
                     type="button"
                     className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"

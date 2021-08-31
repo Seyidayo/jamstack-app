@@ -16,3 +16,8 @@ export type ProductType = {
   link: string;
   reviews: number;
 };
+
+export type CalendlyEventType = {
+  event?: string;
+  payload?: object;
+};
