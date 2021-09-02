@@ -2,10 +2,11 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  text-transform: capitalize;
 }
 
 :root {
-  --primary: #aba1ac;
+  // --primary: #aba1ac;
   --secondary: #d8cec6;
   --neutral: #040302;
 
@@ -26,6 +27,8 @@
 
 html {
   font-size: 16px;
+  filter: brightness();
+  color: currentColor;
 }
 
 body {
