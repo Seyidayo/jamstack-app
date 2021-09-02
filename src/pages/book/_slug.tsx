@@ -11,7 +11,7 @@ import * as styles from "./_slug.module.css";
 
 const payStackConfig = {
   reference: new Date().getTime().toString(),
-  email: process.env.PAYSTACK_TEST_EMAIL || "",
+  email: process.env.PAYSTACK_TEST_EMAIL || "faithid10@gmail.com",
   publicKey: process.env.PAYSTACK_PUBLIC_KEY || "",
 };
 
