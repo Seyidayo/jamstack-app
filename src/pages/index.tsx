@@ -24,7 +24,7 @@ const IndexPage = () => {
             <h1 className="text-6xl font-extrabold leading-tight text-gray-900">
               Keep up with <br />
               <span className="text-blue-400">
-                &#8212; <em>sleep</em> easy.
+                <em>sleep</em>
               </span>
             </h1>
             <article className="col-start-3 w-96">

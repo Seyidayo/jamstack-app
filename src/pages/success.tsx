@@ -1,7 +1,7 @@
 import React from "react";
 import { navigate } from "gatsby-link";
 
-import Layout from "../../components/templates/Layout";
+import Layout from "../components/templates/Layout";
 
 const BookSuccessPage = () => {
   const handleBack = () => {

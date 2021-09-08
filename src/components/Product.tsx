@@ -4,10 +4,10 @@ import { get } from "lodash";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { PaystackConsumer } from "react-paystack";
 
-import Layout from "../../components/templates/Layout";
-import StarRating from "../../components/StarRating";
+import StarRating from "./StarRating";
 
-import * as styles from "./_slug.module.css";
+import * as styles from "./Product.module.css";
+import Layout from "./templates/Layout";
 
 const generateReference = (): string => {
   let text = "";
