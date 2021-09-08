@@ -29,10 +29,9 @@ const IndexPage = () => {
             </h1>
             <article className="col-start-3 w-96">
               <p className="my-8">
-                You want more sleep, we know how to get it Book{" "}
+                You want more sleep, we know how to get it. Book{" "}
                 <strong className="text-blue-400">up to 12 hours</strong> of
-                sleep and have a cozy place
-                <strong>&#8212; prepared for you</strong> easy, anytime.
+                sleep and have a cozy place prepared for you anytime.
               </p>
               <div className="flex gap-4 items-center">
                 <button

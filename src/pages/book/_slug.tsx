@@ -1,4 +1,4 @@
-import React, { ReactPropTypes } from "react";
+import React, { ReactPropTypes, useState } from "react";
 import { graphql, navigate } from "gatsby";
 import { get } from "lodash";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
@@ -9,23 +9,37 @@ import StarRating from "../../components/StarRating";
 
 import * as styles from "./_slug.module.css";
 
+const generateReference = (): string => {
+  let text = "";
+  let possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < 10; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+};
+
 const payStackConfig = {
-  reference: new Date().getTime().toString(),
-  email: process.env.GATSBY_PAYSTACK_TEST_EMAIL || "",
-  publicKey: process.env.GATSBY_PAYSTACK_PUBLIC_KEY || "",
+  email: process.env.GATSBY_PAYSTACK_TEST_EMAIL,
+  publicKey: process.env.GATSBY_PAYSTACK_PUBLIC_KEY,
 };
 
 const ProductPage = (props: ReactPropTypes) => {
   const product = get(props, `data.contentfulProduct`);
+  const [reference, setReference] = useState(generateReference());
 
   const handleSuccess = (_reference: string) => {
     // TODO: send reference
     navigate("/book/appointment");
   };
 
-  const handleClose = () => {};
+  const handleClose = (): void => {
+    setReference(generateReference());
+  };
 
   const componentProps = {
+    reference,
     ...payStackConfig,
     amount: product.price * 500 * 100,
     text: "Book Sleep Appointment",
