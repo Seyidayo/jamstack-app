@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../components/templates/Layout";
 
 import BgImage from "../assets/images/person-sleeping.jpg";
+import UserContext from "../context/UserContext";
+import { Link } from "gatsby";
 
 const IndexPage = () => {
   const [loading, setLoading] = useState(false);
+  const { user } = useContext(UserContext);
 
   const handleSignIn = async (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -34,14 +37,25 @@ const IndexPage = () => {
                 sleep and have a cozy place prepared for you anytime.
               </p>
               <div className="flex gap-4 items-center">
-                <button
-                  className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
-                  type="button"
-                  onClick={handleSignIn}
-                  disabled={loading}
-                >
-                  {loading ? `Loading` : `Book a space`}
-                </button>
+                {user ? (
+                  <Link to="/book">
+                    <button
+                      className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
+                      type="button"
+                    >
+                      Back to dashboard
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold"
+                    type="button"
+                    onClick={handleSignIn}
+                    disabled={loading}
+                  >
+                    {loading ? `Loading` : `Book a space`}
+                  </button>
+                )}
               </div>
             </article>
           </header>

@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, navigate } from "gatsby";
+import UserContext from "../context/UserContext";
 
 type NavbarProps = {
   showBackButton?: boolean;
 };
 
 const Navbar = ({ showBackButton }: NavbarProps) => {
-  const [token] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
   const handleSignOut = async (event: any) => {
     event.preventDefault();
+    setLoading(true);
     try {
-      await fetch(`/api/logout?token=${token}`, {
+      await fetch(`/api/logout?token=${user}`, {
         method: "POST",
       }).catch((err) => {
         console.error(`Logout error: ${err}`);
       });
     } finally {
-      window.localStorage.removeItem("google:tokens");
+      setLoading(false);
+      setUser("");
       navigate("/");
     }
   };
@@ -37,13 +41,13 @@ const Navbar = ({ showBackButton }: NavbarProps) => {
             </Link>
           </li>
           <li>
-            {!!token && (
+            {!!user && (
               <button
                 className="bg-blue-400 hover:bg-blue-500 rounded-md text-white font-bold ml-auto"
                 type="button"
                 onClick={handleSignOut}
               >
-                Log out
+                {loading ? "Logging out" : "Log out"}
               </button>
             )}
           </li>

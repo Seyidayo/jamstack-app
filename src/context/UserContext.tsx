@@ -10,7 +10,7 @@ interface UserProviderInterface {
   children: React.ReactNode;
 }
 
-export const UserContext = createContext<UserInterface>({
+const UserContext = createContext<UserInterface>({
   user: "",
   setUser: () => {},
 });
@@ -24,4 +24,6 @@ const UserProvider = ({ children }: UserProviderInterface) => {
   );
 };
 
-export default UserProvider;
+export default UserContext;
+
+export { UserProvider };

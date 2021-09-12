@@ -3,12 +3,12 @@ import { navigate } from "gatsby";
 import { Helmet } from "react-helmet";
 import qs from "query-string";
 
-import UserProvider, { UserContext } from "../context/UserContext";
+import UserContext from "../context/UserContext";
 import Layout from "../components/templates/Layout";
 
 const LoginPage = ({ location }: any) => {
   const { token } = qs.parse(location?.search);
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
 
   useEffect(() => {
     setUser(token);
@@ -17,27 +17,19 @@ const LoginPage = ({ location }: any) => {
     }, 1000);
   });
 
-  const handleClick = () => {
-    setUser("Clicked");
-  };
-
   return (
     <Layout>
-      <UserProvider>
-        <Helmet>
-          <title>Authenticating...</title>
-        </Helmet>
+      <Helmet>
+        <title>Authenticating...</title>
+      </Helmet>
 
-        <div className="container max-w-5xl mx-auto">
-          <header>
-            <h2 className="text-4xl font-bold text-center text-blue-400">
-              Authenticating your account...
-            </h2>
-          </header>
-        </div>
-
-        <button onClick={handleClick}>Clicked</button>
-      </UserProvider>
+      <div className="container max-w-5xl mx-auto">
+        <header>
+          <h2 className="text-4xl font-bold text-center text-blue-400">
+            Authenticating your account...
+          </h2>
+        </header>
+      </div>
     </Layout>
   );
 };
