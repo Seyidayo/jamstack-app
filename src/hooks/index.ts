@@ -8,7 +8,7 @@ function useLocalStorage<T>(
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      if (!window) {
+      if (typeof window === `undefined`) {
         return;
       }
       // Get from local storage by key
