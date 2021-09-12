@@ -1,21 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { navigate } from "gatsby";
-
-const isBrowser = () => typeof window !== "undefined";
-
-const isLoggedIn = () => {
-  const user = getUser();
-  return !!user.access_token;
-};
-
-const getUser = () =>
-  isBrowser() && window.localStorage.getItem("google:tokens")
-    ? JSON.parse(window.localStorage.getItem("google:tokens"))
-    : {};
+import UserContext from "../context/UserContext";
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
-  console.log("private");
-  if (!isLoggedIn() && location.pathname !== `/`) {
+  const { user } = useContext(UserContext);
+  if (!user) {
     navigate("/");
     return null;
   }

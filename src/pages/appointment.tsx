@@ -2,7 +2,7 @@ import { navigate } from "gatsby";
 import React from "react";
 import { InlineWidget, CalendlyEventListener } from "react-calendly";
 
-import Layout from "../../components/templates/Layout";
+import Layout from "../components/templates/Layout";
 const BookAppointmentPage = () => {
   const handleChange = (e: any) => {
     const {

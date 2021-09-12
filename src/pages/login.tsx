@@ -3,12 +3,12 @@ import { navigate } from "gatsby";
 import { Helmet } from "react-helmet";
 import qs from "query-string";
 
-import { UserContext } from "../context/UserContext";
+import UserContext from "../context/UserContext";
 import Layout from "../components/templates/Layout";
 
 const LoginPage = ({ location }: any) => {
   const { token } = qs.parse(location?.search);
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
 
   useEffect(() => {
     setUser(token);

@@ -3,7 +3,7 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const ProductPage = path.resolve("./src/pages/book/_slug.tsx");
+  const ProductPage = path.resolve("./src/components/Product.tsx");
 
   const result = await graphql(
     `
